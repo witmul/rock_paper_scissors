@@ -18,17 +18,14 @@ function playRound(playerSelection, computerSelection) {
     let result = ""
 
 
-    if(p1_count >= 5 || p2_count >= 5){
-        if (p1_count >= 5){
-            result = "You won a game!"
-            divOutput.textContent = result;
+    if (p1_count >= 5 || p2_count >= 5) {
+        if (p1_count >= 5) {
+            result = "You won a game!";
         }
-
-        if (p2_count >= 5){
-            result = "You lost a game!"
-            divOutput.textContent = result;
+        if (p2_count >= 5) {
+            result = "You lost a game!";
         }
-
+        divOutput.textContent = result;
     }else{
 
         if (playerIndex === computerIndex) {
