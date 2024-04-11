@@ -10,57 +10,49 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
 
-    if (p1_count >= 5) {
-        if (p2_count >= 5) {
-            result = "You won! End of the game"
-            break;
+    const choices = ["rock", "paper", "scissors"];
+    const player = playerSelection.toLowerCase();
+    const computer = computerSelection.toLowerCase();
+    const playerIndex = choices.indexOf(player);
+    const computerIndex = choices.indexOf(computer);
+    let result = ""
+
+
+    if(p1_count >= 5 || p2_count >= 5){
+        if (p1_count >= 5){
+            result = "You won a game!"
+            divOutput.textContent = result;
         }
-      } else {
-        console.log("a is not 1");
-      }
 
-
-
-
-    if (p1_count >= 5){
+        if (p2_count >= 5){
+            result = "You lost a game!"
+            divOutput.textContent = result;
+        }
 
     }else{
-        result = "You lost! End of the game"
-        break
+
+        if (playerIndex === computerIndex) {
+            p1_count += 1;
+            p2_count += 1;
+            result = "Draft!";
+        } else if ((playerIndex + 1) % 3 === computerIndex) {
+            p1_count += 1;
+            result = "Round won!";
+        } else {
+            p2_count += 1;
+            result = "Round lost!";
+        }
+    
+        const row = document.createElement("p");
+        row.textContent = result;
+        divOutput.appendChild(row);
+        divScore.textContent = `Score: ${p1_count} : ${p2_count}`;
+
     }
 
 
-    let player = playerSelection.toLowerCase()
-    let computer = computerSelection.toLowerCase()
-    let result = ""
-    switch(true){
-        case player === "rock" && computer === "scissors":
-            p1_count += 1
-            result = "Round won!"
-            break
-        case player === "scissors" && computer === "paper":
-            p1_count += 1
-            result = "Round won!"
-            break
-        case player === "paper" && computer === "rock":
-            p1_count += 1
-            result = "Round won!"
-            break
-        case player === computer:
-            p1_count += 1
-            p2_count += 1
-            result = "Draft!"
-            break
-        default:
-            p2_count += 1
-            result = "Round lost!"
-            break
-    }
 
-    const row = document.createElement("p");
-    row.textContent = result;
-    divOutput.appendChild(row);
-    divScore.textContent = `Score: ${p1_count} : ${p2_count}`;
+
   }
 
 
